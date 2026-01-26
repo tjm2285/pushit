@@ -53,8 +53,7 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-       
-
+        
         GetInputs();
         AnimateWheels();
     }
