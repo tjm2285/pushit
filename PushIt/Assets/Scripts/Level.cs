@@ -10,7 +10,7 @@ public class Level : MonoBehaviour
 
 
     private int currentZonesCompelete = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //TODO: delay start level
     void Start()
     {
         StartLevel();
