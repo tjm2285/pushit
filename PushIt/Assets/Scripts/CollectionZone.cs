@@ -22,7 +22,7 @@ public class CollectionZone : MonoBehaviour
         var hitObject = collision.gameObject.GetComponent<Item>();
         if (hitObject!=null)
         {
-            Debug.Log(collision.gameObject.name);
+           // Debug.Log(collision.gameObject.name);
             _score += hitObject.value;
             _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
             
@@ -37,6 +37,7 @@ public class CollectionZone : MonoBehaviour
 
     private void ZoneFilled()
     {
+        _scoreText.color = Color.springGreen;
         ZoneFilledEvent?.Invoke();
     }
 }
