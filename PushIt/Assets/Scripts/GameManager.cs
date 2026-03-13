@@ -5,20 +5,26 @@ public class GameManager : MonoBehaviour
 {
     
     public List<GameObject> levels;
-    private int currentLevel = 0;
+    private int _currentLevel = 0;
+    private Level _currentLevelObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Debug.Log("GameManagerSTART");
-        levels[0].GetComponent<Level>().StartLevel();
-        levels[0].GetComponent<Level>().LevelCompleteEvent += TransitionToNexTLevel;
+        _currentLevelObject = levels[0].GetComponent<Level>();
+        _currentLevelObject.StartLevel();
+        _currentLevelObject.LevelCompleteEvent += TransitionToNexTLevel;
     }
 
     private void TransitionToNexTLevel()
     {
-        levels[currentLevel].GetComponent<Level>().LevelCompleteEvent -= TransitionToNexTLevel;
-        currentLevel++;
-        levels[currentLevel].GetComponent<Level>().StartLevel();
+        Debug.Log(_currentLevel);
+        _currentLevelObject.LevelCompleteEvent -= TransitionToNexTLevel;
+        _currentLevel++;
+        _currentLevelObject = levels[_currentLevel].GetComponent<Level>();
+        _currentLevelObject.StartLevel();
+        _currentLevelObject.LevelCompleteEvent += TransitionToNexTLevel;
+        Debug.Log(_currentLevel);
     }
     
 }

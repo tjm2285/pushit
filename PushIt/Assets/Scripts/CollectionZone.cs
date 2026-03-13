@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -16,9 +17,16 @@ public class CollectionZone : MonoBehaviour
     public event ZoneFilledHandler ZoneFilledEvent;
 
     private int _score = 0;
-   
+    private bool _isFilled = false;
+
+    private void Start()
+    {
+        _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        if (_isFilled) return;
         var hitObject = collision.gameObject.GetComponent<Item>();
         if (hitObject!=null)
         {
@@ -37,6 +45,7 @@ public class CollectionZone : MonoBehaviour
 
     private void ZoneFilled()
     {
+        _isFilled = true;
         _scoreText.color = Color.springGreen;
         ZoneFilledEvent?.Invoke();
     }

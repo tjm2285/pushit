@@ -10,18 +10,18 @@ public class Level : MonoBehaviour
     public List<GameObject> collectionZones;
     public GameObject levelCamera;
 
-    private int currentZonesCompelete = 0;
+    private int _currentZonesComplete = 0;
     
     public delegate void LevelCompleteHandler();
     public event LevelCompleteHandler LevelCompleteEvent;
     
     void Start()
     {
-        
+        _currentZonesComplete = 0;
     }
     public void StartLevel()
     {
-        Debug.Log("StartLevel");
+        Debug.Log("StartLevel  - " +levelCamera.transform.parent.name);
         entry.SetActive(false);
         foreach (var zone in collectionZones)
         {
@@ -33,8 +33,8 @@ public class Level : MonoBehaviour
 
     private void CheckIfExitCanOpen()
     {
-        currentZonesCompelete++;
-        if (currentZonesCompelete >= collectionZones.Count)
+        _currentZonesComplete++;
+        if (_currentZonesComplete >= collectionZones.Count)
         {
             OpenExit();
         }
