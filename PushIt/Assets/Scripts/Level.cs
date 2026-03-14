@@ -29,13 +29,15 @@ public class Level : MonoBehaviour
         }
 
         floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
-        
     }
 
     private void CarEnteredLevel()
     {
-        Debug.Log("CarEnteredLevel");
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
+        foreach (var zone in collectionZones)
+        {
+            zone.GetComponent<CollectionZone>().EnableCollectionZone();
+        }
     }
 
     private void CheckIfExitCanOpen()

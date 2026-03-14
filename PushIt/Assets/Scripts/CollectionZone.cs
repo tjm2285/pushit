@@ -18,27 +18,40 @@ public class CollectionZone : MonoBehaviour
 
     private int _score = 0;
     private bool _isFilled = false;
+    private bool _isZoneActive = false;
 
     private void Start()
     {
         _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
     }
 
+    public void EnableCollectionZone()
+    {
+        _score = 0;
+        _isFilled = false;
+        _scoreText.color = Color.white;
+        _isZoneActive = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (_isFilled) return;
+       
+        
         var hitObject = collision.gameObject.GetComponent<Item>();
         if (hitObject!=null)
         {
-           // Debug.Log(collision.gameObject.name);
-            _score += hitObject.value;
-            _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
-            
-            if(_score>=_scoreGoal)
+            if (_isZoneActive)
             {
-                ZoneFilled();
+                // Debug.Log(collision.gameObject.name);
+                _score += hitObject.value;
+                _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
+
+                if (_score >= _scoreGoal)
+                {
+                    ZoneFilled();
+                }
             }
-            
             GameObject.Destroy(collision.gameObject);
         }
     }

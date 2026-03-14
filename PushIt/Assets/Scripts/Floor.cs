@@ -8,7 +8,6 @@ public class Floor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.name == "shovel"||other.name == "body")
         {
             OnOnFloorEnterEvent();
