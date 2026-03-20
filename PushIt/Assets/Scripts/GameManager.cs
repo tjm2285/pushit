@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
 
     private void TransitionToNexTLevel()
     {
+        if (_currentLevel + 1 >= levels.Count)
+        {
+            return;
+        }
         _currentLevelObject.LevelCompleteEvent -= TransitionToNexTLevel;
         _currentLevel++;
         _currentLevelObject = levels[_currentLevel].GetComponent<Level>();

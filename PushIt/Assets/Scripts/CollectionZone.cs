@@ -13,6 +13,9 @@ public class CollectionZone : MonoBehaviour
     [SerializeField]
     private TextMeshPro _scoreText;
     
+    
+    public HitArea _hitArea;
+    
     public delegate void ZoneFilledHandler();
     public event ZoneFilledHandler ZoneFilledEvent;
 
@@ -31,11 +34,32 @@ public class CollectionZone : MonoBehaviour
         _isFilled = false;
         _scoreText.color = Color.white;
         _isZoneActive = true;
+        _hitArea.OnHitEvent += ProcessCollision;
+    }
+
+    private void ProcessCollision(Collision collision)
+    {
+        var hitObject = collision.gameObject.GetComponent<Item>();
+        if (hitObject!=null)
+        {
+            if (_isZoneActive)
+            {
+                // Debug.Log(collision.gameObject.name);
+                _score += hitObject.value;
+                _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
+
+                if (_score >= _scoreGoal)
+                {
+                    ZoneFilled();
+                }
+            }
+            // GameObject.Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_isFilled) return;
+       /* if (_isFilled) return;
        
         
         var hitObject = collision.gameObject.GetComponent<Item>();
@@ -52,8 +76,8 @@ public class CollectionZone : MonoBehaviour
                     ZoneFilled();
                 }
             }
-            GameObject.Destroy(collision.gameObject);
-        }
+           // GameObject.Destroy(collision.gameObject);
+        }*/
     }
 
     private void ZoneFilled()

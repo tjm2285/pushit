@@ -33,6 +33,7 @@ public class Level : MonoBehaviour
 
     private void CarEnteredLevel()
     {
+        floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
         foreach (var zone in collectionZones)
         {
@@ -43,7 +44,6 @@ public class Level : MonoBehaviour
     private void CheckIfExitCanOpen()
     {
         _currentZonesComplete++;
-        Debug.Log("CheckIfExitCanOpen - " + _currentZonesComplete);
         if (_currentZonesComplete >= collectionZones.Count)
         {
             OpenExit();
