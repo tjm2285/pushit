@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class CollectionZone : MonoBehaviour
 {
+    private static readonly int IsClosed = Animator.StringToHash("IsClosed");
+    private static readonly int IsOpen = Animator.StringToHash("IsOpen");
+
     [SerializeField]
     private int _scoreGoal = 10;
 
@@ -15,7 +18,8 @@ public class CollectionZone : MonoBehaviour
     
     
     public HitArea _hitArea;
-    
+    public Animator _leftAnimator;
+    public Animator _rightAnimator;
     public delegate void ZoneFilledHandler();
     public event ZoneFilledHandler ZoneFilledEvent;
 
@@ -35,6 +39,9 @@ public class CollectionZone : MonoBehaviour
         _scoreText.color = Color.white;
         _isZoneActive = true;
         _hitArea.OnHitEvent += ProcessCollision;
+        _leftAnimator.SetTrigger(IsOpen);
+        _rightAnimator.SetTrigger(IsOpen);
+        
     }
 
     private void ProcessCollision(Collision collision)
@@ -84,6 +91,8 @@ public class CollectionZone : MonoBehaviour
     {
         _isFilled = true;
         _scoreText.color = Color.springGreen;
+        _leftAnimator.SetTrigger(IsClosed);
+        _rightAnimator.SetTrigger(IsClosed);
         ZoneFilledEvent?.Invoke();
     }
 }
