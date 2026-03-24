@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 1184632322336083001}
   - component: {fileID: 6069933212376954047}
   - component: {fileID: 5994821719444804812}
+  - component: {fileID: 5502452358623464027}
   - component: {fileID: 3936256308537641254}
   - component: {fileID: 1479217175692876845}
   m_Layer: 6
@@ -273,6 +274,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5502452358623464027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106940501386468942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e407598293b83346a3071fcf956b403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!64 &3936256308537641254
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -332,7 +345,7 @@ Transform:
   m_GameObject: {fileID: 6580981799870844656}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6132998, y: -1.09, z: -5.20222}
+  m_LocalPosition: {x: 3.6132998, y: -1.14, z: -5.20222}
   m_LocalScale: {x: 2.8522532, y: 2.8522532, z: 2.8522532}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -472,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreGoal: 100
   _scoreText: {fileID: 7788229024846166111}
-  _hitArea: {fileID: 1479217175692876845}
+  _hitArea: {fileID: 0}
   _leftAnimator: {fileID: 7526576760724329708}
   _rightAnimator: {fileID: 427880633314635598}
 --- !u!1001 &2458797474063067921
