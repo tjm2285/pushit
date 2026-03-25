@@ -33,7 +33,7 @@ public class Level : MonoBehaviour
 
     private void CarEnteredLevel()
     {
-        floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
+        floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
         foreach (var zone in collectionZones)
         {

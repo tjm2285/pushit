@@ -34,6 +34,7 @@ public class CollectionZone : MonoBehaviour
 
     public void EnableCollectionZone()
     {
+        Debug.Log("EnableCollectionZone");
         _score = 0;
         _isFilled = false;
         _scoreText.color = Color.white;
@@ -51,7 +52,6 @@ public class CollectionZone : MonoBehaviour
         {
             if (_isZoneActive)
             {
-                // Debug.Log(collision.gameObject.name);
                 _score += hitObject.value;
                 _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
 
