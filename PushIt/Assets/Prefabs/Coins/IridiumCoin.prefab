@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3188711651685294912}
   - component: {fileID: 683814601964936476}
   - component: {fileID: 4797149755464998584}
-  m_Layer: 0
-  m_Name: GoldCoin
+  m_Layer: 11
+  m_Name: IridiumCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,10 +42,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4332714337745268252}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  value: 5
+  value: 20
 --- !u!1001 &219025673910619124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +162,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5341907648987187581, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -5341907648987187581, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -196,6 +200,10 @@ PrefabInstance:
     - target: {fileID: -5098678881913409841, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4005741085231229209, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4005741085231229209, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_IsActive
@@ -241,6 +249,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -83665950244040663, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ee934b66aeb18654a897b51367778913, type: 2}
     - target: {fileID: 316373646315389585, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_LocalScale.z
       value: 20
@@ -285,6 +297,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinGold
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559560168332703148, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3110522945785529460, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -328,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 4886581680941951644, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770201676356606050, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5770201676356606050, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_IsActive

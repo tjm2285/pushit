@@ -9,32 +9,42 @@ public class Level : MonoBehaviour
     public GameObject exit;
     public List<GameObject> collectionZones;
     public GameObject levelCamera;
+    public GameObject floor;
 
-    private int currentZonesCompelete = 0;
+    private int _currentZonesComplete = 0;
     
     public delegate void LevelCompleteHandler();
     public event LevelCompleteHandler LevelCompleteEvent;
     
     void Start()
     {
-        
+        _currentZonesComplete = 0;
     }
     public void StartLevel()
     {
-        Debug.Log("StartLevel");
         entry.SetActive(false);
         foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
         }
-       
-        levelCamera.SetActive(true);
+
+        floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
+    }
+
+    private void CarEnteredLevel()
+    {
+        floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
+        levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
+        foreach (var zone in collectionZones)
+        {
+            zone.GetComponent<CollectionZone>().EnableCollectionZone();
+        }
     }
 
     private void CheckIfExitCanOpen()
     {
-        currentZonesCompelete++;
-        if (currentZonesCompelete >= collectionZones.Count)
+        _currentZonesComplete++;
+        if (_currentZonesComplete >= collectionZones.Count)
         {
             OpenExit();
         }
@@ -43,6 +53,7 @@ public class Level : MonoBehaviour
     {
         LevelCompleteEvent?.Invoke();
         exit.SetActive(false);
-        levelCamera.SetActive(false);
+        //levelCamera.SetActive(false);
+        levelCamera.GetComponent<CinemachineCamera>().Priority = 0;
     } 
 }
