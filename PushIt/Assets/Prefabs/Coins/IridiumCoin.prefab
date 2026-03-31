@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 683814601964936476}
   - component: {fileID: 4797149755464998584}
   m_Layer: 11
-  m_Name: GoldCoin
+  m_Name: IridiumCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  value: 10
+  value: 20
 --- !u!1001 &219025673910619124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -83665950244040663, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ee934b66aeb18654a897b51367778913, type: 2}
     - target: {fileID: 316373646315389585, guid: 335b63d0e88f9e54297db312c6625808, type: 3}
       propertyPath: m_LocalScale.z
       value: 20
