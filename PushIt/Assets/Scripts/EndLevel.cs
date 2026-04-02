@@ -3,51 +3,53 @@ using Unity.Cinemachine;
 using Unity.Multiplayer.PlayMode;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class EndLevel : Level
 {
-    public GameObject entry;
-    public GameObject exit;
-    public List<GameObject> collectionZones;
-    public GameObject levelCamera;
-    public GameObject floor;
-
-    private int _currentZonesComplete = 0;
+    private static readonly int DoDrive = Animator.StringToHash("Drive");
+    //private int _currentZonesComplete = 0;
     
     public delegate void LevelCompleteHandler();
     public event LevelCompleteHandler LevelCompleteEvent;
+    public Animator _leftAnimator;
+    public ParticleSystem _leftParticleSystem;
+    public ParticleSystem _rightParticleSystem;
+    
     
     void Start()
     {
-        _currentZonesComplete = 0;
+        //_currentZonesComplete = 0;
     }
-    public virtual void StartLevel()
+    public override void StartLevel()
     {
         entry.SetActive(false);
-        foreach (var zone in collectionZones)
+       /* foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
-        }
+        }*/
 
         floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
     }
 
-    protected virtual void CarEnteredLevel()
+    protected override void CarEnteredLevel()
     {
         floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
-        foreach (var zone in collectionZones)
+       /* foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().EnableCollectionZone();
-        }
+        }*/
+       _leftParticleSystem.Play();
+       _rightParticleSystem.Play();
+       //_leftAnimator.SetTrigger(DoDrive);
     }
 
     private void CheckIfExitCanOpen()
     {
-        _currentZonesComplete++;
+       /* _currentZonesComplete++;
         if (_currentZonesComplete >= collectionZones.Count)
         {
             OpenExit();
-        }
+        }*/
     }
     private void OpenExit()
     {
