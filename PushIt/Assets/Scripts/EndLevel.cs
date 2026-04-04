@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.Multiplayer.PlayMode;
@@ -22,11 +23,6 @@ public class EndLevel : Level
     public override void StartLevel()
     {
         entry.SetActive(false);
-       /* foreach (var zone in collectionZones)
-        {
-            zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
-        }*/
-
         floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
     }
 
@@ -34,15 +30,23 @@ public class EndLevel : Level
     {
         floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
-       /* foreach (var zone in collectionZones)
-        {
-            zone.GetComponent<CollectionZone>().EnableCollectionZone();
-        }*/
-       _leftParticleSystem.Play();
-       _rightParticleSystem.Play();
-       //_leftAnimator.SetTrigger(DoDrive);
+       
+      
+       StartCoroutine(WaitForCamera());
+       
     }
-
+    IEnumerator WaitForCamera()
+    {
+        yield return new WaitForSeconds(2);
+        _leftParticleSystem.Play();
+        _rightParticleSystem.Play();
+        StartCoroutine(WaitForConfetti());
+    }
+    IEnumerator WaitForConfetti()
+    {
+        yield return new WaitForSeconds(1);
+        _leftAnimator.SetTrigger(DoDrive);
+    }
     private void CheckIfExitCanOpen()
     {
        /* _currentZonesComplete++;
