@@ -15,7 +15,7 @@ public class EndLevel : Level
     public ParticleSystem _leftParticleSystem;
     public ParticleSystem _rightParticleSystem;
     
-    
+    public Rigidbody _carRigidbody;
     void Start()
     {
         //_currentZonesComplete = 0;

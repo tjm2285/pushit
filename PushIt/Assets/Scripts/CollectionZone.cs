@@ -89,6 +89,7 @@ public class CollectionZone : MonoBehaviour
 
     private void ZoneFilled()
     {
+        if (_isFilled) return;
         _isFilled = true;
         _scoreText.color = Color.springGreen;
         _leftAnimator.SetTrigger(IsClosed);

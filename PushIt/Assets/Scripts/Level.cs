@@ -44,6 +44,7 @@ public class Level : MonoBehaviour
     private void CheckIfExitCanOpen()
     {
         _currentZonesComplete++;
+        Debug.Log(_currentZonesComplete + " ------- " + collectionZones.Count);
         if (_currentZonesComplete >= collectionZones.Count)
         {
             OpenExit();
