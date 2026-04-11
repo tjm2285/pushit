@@ -15,7 +15,7 @@ public class EndLevel : Level
     public ParticleSystem _leftParticleSystem;
     public ParticleSystem _rightParticleSystem;
     
-    public Rigidbody _carRigidbody;
+    public GameObject _car;
     void Start()
     {
         //_currentZonesComplete = 0;
@@ -37,6 +37,8 @@ public class EndLevel : Level
     }
     IEnumerator WaitForCamera()
     {
+      //  _car.layer = LayerMask.NameToLayer("FallingSphere");
+      SetLayerAllChildren(_car.transform, LayerMask.NameToLayer("NormalSphere"));
         yield return new WaitForSeconds(2);
         _leftParticleSystem.Play();
         _rightParticleSystem.Play();
@@ -61,5 +63,14 @@ public class EndLevel : Level
         exit.SetActive(false);
         //levelCamera.SetActive(false);
         levelCamera.GetComponent<CinemachineCamera>().Priority = 0;
-    } 
+    }
+
+    private void SetLayerAllChildren(Transform root, int layer)
+    {
+        var children = root.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+        {
+            child.gameObject.layer = layer;
+        }
+    }
 }

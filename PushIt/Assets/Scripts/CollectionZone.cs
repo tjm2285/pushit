@@ -64,6 +64,16 @@ public class CollectionZone : MonoBehaviour
         }
     }
 
+    public void AnimateDoorsOpen()
+    {
+        _leftAnimator.SetTrigger(IsOpen);
+        _rightAnimator.SetTrigger(IsOpen); 
+    }
+    public void AnimateDoorsClosed()
+    {
+        _leftAnimator.SetTrigger(IsClosed);
+        _rightAnimator.SetTrigger(IsClosed); 
+    }
     private void OnCollisionEnter(Collision collision)
     {
        /* if (_isFilled) return;
