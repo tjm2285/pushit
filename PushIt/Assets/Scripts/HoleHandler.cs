@@ -9,17 +9,37 @@ public class HoleHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter -  "+other.gameObject.layer + " -  " + NormalSphereLayer);
+        Transform t = other.gameObject.transform;;
+        
+        if (other.gameObject.name == "tractor-shovel" || other.gameObject.name == "shovel" || other.gameObject.name == "body")
+        {
+            t = other.gameObject.transform.parent.transform.parent.transform;
+        }
+        
         if (other.gameObject.layer == NormalSphereLayer)
         {
-            other.gameObject.layer = FallingSphereLayer;
+            //other.gameObject.layer = FallingSphereLayer;
+            SetLayerAllChildren(t, FallingSphereLayer);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("OnTriggerExit - "+ other.gameObject.name);
         if (other.gameObject.layer == FallingSphereLayer)
         {
             other.gameObject.layer = NormalSphereLayer;
+            SetLayerAllChildren(other.gameObject.transform, NormalSphereLayer);
+        }
+    }
+    
+    private void SetLayerAllChildren(Transform root, int layer)
+    {
+        var children = root.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+        {
+            child.gameObject.layer = layer;
         }
     }
 }
