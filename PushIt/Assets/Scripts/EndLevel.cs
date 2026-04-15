@@ -47,7 +47,7 @@ public class EndLevel : Level
     IEnumerator WaitForConfetti()
     {
         yield return new WaitForSeconds(1);
-       _leftAnimator.SetTrigger(DoDrive);
+       //_leftAnimator.SetTrigger(DoDrive);
     }
     private void CheckIfExitCanOpen()
     {

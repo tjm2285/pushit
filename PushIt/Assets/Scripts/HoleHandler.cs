@@ -9,9 +9,7 @@ public class HoleHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter -  "+other.gameObject.layer + " -  " + NormalSphereLayer);
         Transform t = other.gameObject.transform;;
-        
         if (other.gameObject.name == "tractor-shovel" || other.gameObject.name == "shovel" || other.gameObject.name == "body")
         {
             t = other.gameObject.transform.parent.transform.parent.transform;
@@ -26,7 +24,6 @@ public class HoleHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit - "+ other.gameObject.name);
         if (other.gameObject.layer == FallingSphereLayer)
         {
             other.gameObject.layer = NormalSphereLayer;
