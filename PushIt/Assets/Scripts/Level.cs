@@ -22,7 +22,7 @@ public class Level : MonoBehaviour
     }
     public virtual void StartLevel()
     {
-        entry.SetActive(false);
+        if(entry)entry.SetActive(false);
         foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
@@ -53,7 +53,7 @@ public class Level : MonoBehaviour
     {
         LevelCompleteEvent?.Invoke();
         exit.SetActive(false);
-        //levelCamera.SetActive(false);
+        
         levelCamera.GetComponent<CinemachineCamera>().Priority = 0;
     } 
 }

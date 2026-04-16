@@ -14,7 +14,7 @@ public class EndLevel : Level
     public Animator _leftAnimator;
     public ParticleSystem _leftParticleSystem;
     public ParticleSystem _rightParticleSystem;
-    
+    public CollectionZone _collectionZone;
     public GameObject _car;
     void Start()
     {
@@ -30,24 +30,25 @@ public class EndLevel : Level
     {
         floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
-       
-      
        StartCoroutine(WaitForCamera());
-       
     }
     IEnumerator WaitForCamera()
     {
-      //  _car.layer = LayerMask.NameToLayer("FallingSphere");
       SetLayerAllChildren(_car.transform, LayerMask.NameToLayer("NormalSphere"));
+      _car.GetComponent<CarController>().IsCarActive = false;
         yield return new WaitForSeconds(2);
         _leftParticleSystem.Play();
         _rightParticleSystem.Play();
+        
         StartCoroutine(WaitForConfetti());
     }
     IEnumerator WaitForConfetti()
     {
         yield return new WaitForSeconds(1);
-       //_leftAnimator.SetTrigger(DoDrive);
+       _leftAnimator.SetTrigger(DoDrive);
+       _collectionZone.EnableCollectionZone();
+       yield return new WaitForSeconds(8);
+       _collectionZone.AnimateDoorsClosed();
     }
     private void CheckIfExitCanOpen()
     {

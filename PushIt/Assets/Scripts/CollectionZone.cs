@@ -34,7 +34,6 @@ public class CollectionZone : MonoBehaviour
 
     public void EnableCollectionZone()
     {
-        Debug.Log("EnableCollectionZone");
         _score = 0;
         _isFilled = false;
         _scoreText.color = Color.white;
