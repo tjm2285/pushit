@@ -34,7 +34,6 @@ public class CollectionZone : MonoBehaviour
 
     public void EnableCollectionZone()
     {
-        Debug.Log("EnableCollectionZone");
         _score = 0;
         _isFilled = false;
         _scoreText.color = Color.white;
@@ -64,6 +63,16 @@ public class CollectionZone : MonoBehaviour
         }
     }
 
+    public void AnimateDoorsOpen()
+    {
+        _leftAnimator.SetTrigger(IsOpen);
+        _rightAnimator.SetTrigger(IsOpen); 
+    }
+    public void AnimateDoorsClosed()
+    {
+        _leftAnimator.SetTrigger(IsClosed);
+        _rightAnimator.SetTrigger(IsClosed); 
+    }
     private void OnCollisionEnter(Collision collision)
     {
        /* if (_isFilled) return;
@@ -89,6 +98,7 @@ public class CollectionZone : MonoBehaviour
 
     private void ZoneFilled()
     {
+        if (_isFilled) return;
         _isFilled = true;
         _scoreText.color = Color.springGreen;
         _leftAnimator.SetTrigger(IsClosed);

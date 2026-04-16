@@ -1,15 +1,24 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class HoleHandler : MonoBehaviour
 {
-    public int NormalShpereLayer, FallingSphereLayer;
+    [FormerlySerializedAs("NormalShpereLayer")] public int NormalSphereLayer;
+    public int FallingSphereLayer;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == NormalShpereLayer)
+        Transform t = other.gameObject.transform;;
+        if (other.gameObject.name == "tractor-shovel" || other.gameObject.name == "shovel" || other.gameObject.name == "body")
         {
-            other.gameObject.layer = FallingSphereLayer;
+            t = other.gameObject.transform.parent.transform.parent.transform;
+        }
+        
+        if (other.gameObject.layer == NormalSphereLayer)
+        {
+            //other.gameObject.layer = FallingSphereLayer;
+            SetLayerAllChildren(t, FallingSphereLayer);
         }
     }
 
@@ -17,19 +26,17 @@ public class HoleHandler : MonoBehaviour
     {
         if (other.gameObject.layer == FallingSphereLayer)
         {
-            other.gameObject.layer = NormalShpereLayer;
+            other.gameObject.layer = NormalSphereLayer;
+            SetLayerAllChildren(other.gameObject.transform, NormalSphereLayer);
         }
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    private void SetLayerAllChildren(Transform root, int layer)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var children = root.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+        {
+            child.gameObject.layer = layer;
+        }
     }
 }

@@ -29,6 +29,9 @@ public class CarController : MonoBehaviour
 
     public List<Wheel> wheels;
 
+    private bool _isCarActive = true;
+    public bool IsCarActive{ get{ return _isCarActive; } set { _isCarActive = value; } }
+    
     float _moveInput;
     float _steerInput;
     private Rigidbody _carRb;
@@ -59,12 +62,14 @@ public class CarController : MonoBehaviour
     }
     private void LateUpdate()
     {
+       
         Move();
         Steer();
         Brake();
     }
     void GetInputs()
     {
+       if(!_isCarActive)return;
         _moveInput = Input.GetAxis("Vertical");
         _steerInput = Input.GetAxis("Horizontal");
     }

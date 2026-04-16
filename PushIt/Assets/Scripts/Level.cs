@@ -20,9 +20,9 @@ public class Level : MonoBehaviour
     {
         _currentZonesComplete = 0;
     }
-    public void StartLevel()
+    public virtual void StartLevel()
     {
-        entry.SetActive(false);
+        if(entry)entry.SetActive(false);
         foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
@@ -31,7 +31,7 @@ public class Level : MonoBehaviour
         floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
     }
 
-    private void CarEnteredLevel()
+    protected virtual void CarEnteredLevel()
     {
         floor.GetComponent<Floor>().OnFloorEnterEvent -= CarEnteredLevel;
         levelCamera.GetComponent<CinemachineCamera>().Priority = 100;
@@ -53,7 +53,7 @@ public class Level : MonoBehaviour
     {
         LevelCompleteEvent?.Invoke();
         exit.SetActive(false);
-        //levelCamera.SetActive(false);
+        
         levelCamera.GetComponent<CinemachineCamera>().Priority = 0;
     } 
 }

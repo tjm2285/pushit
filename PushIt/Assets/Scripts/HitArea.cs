@@ -7,7 +7,6 @@ public class HitArea : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         OnHitEvent?.Invoke(collision);
     }
     
