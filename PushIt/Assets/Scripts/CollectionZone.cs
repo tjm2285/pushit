@@ -22,7 +22,8 @@ public class CollectionZone : MonoBehaviour
     public Animator _rightAnimator;
     public delegate void ZoneFilledHandler();
     public event ZoneFilledHandler ZoneFilledEvent;
-
+    public AudioSource _collectSound;
+    
     private int _score = 0;
     private bool _isFilled = false;
     private bool _isZoneActive = false;
@@ -53,7 +54,7 @@ public class CollectionZone : MonoBehaviour
             {
                 _score += hitObject.value;
                 _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
-
+                _collectSound.Play();
                 if (_score >= _scoreGoal)
                 {
                     ZoneFilled();
