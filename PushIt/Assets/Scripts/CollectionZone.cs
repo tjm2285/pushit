@@ -27,6 +27,9 @@ public class CollectionZone : MonoBehaviour
     private int _score = 0;
     private bool _isFilled = false;
     private bool _isZoneActive = false;
+    
+    public delegate void UpdateScoreHandler(int score);
+    public event UpdateScoreHandler UpdateScoreEvent;
 
     private void Start()
     {
@@ -55,6 +58,8 @@ public class CollectionZone : MonoBehaviour
                 _score += hitObject.value;
                 _scoreText.text = string.Format("{0}/{1}", _score, _scoreGoal);
                 _collectSound.Play();
+                UpdateScoreEvent?.Invoke(hitObject.value);
+                Debug.Log("Coin Collected");
                 if (_score >= _scoreGoal)
                 {
                     ZoneFilled();

@@ -16,6 +16,9 @@ public class Level : MonoBehaviour
     public delegate void LevelCompleteHandler();
     public event LevelCompleteHandler LevelCompleteEvent;
     
+    public delegate void UpdateScoreHandler(int score);
+    public event UpdateScoreHandler UpdateScoreEvent;
+    
     void Start()
     {
         _currentZonesComplete = 0;
@@ -26,9 +29,15 @@ public class Level : MonoBehaviour
         foreach (var zone in collectionZones)
         {
             zone.GetComponent<CollectionZone>().ZoneFilledEvent += CheckIfExitCanOpen;
+            zone.GetComponent<CollectionZone>().UpdateScoreEvent += UpdateScore;
         }
 
         floor.GetComponent<Floor>().OnFloorEnterEvent += CarEnteredLevel;
+    }
+
+    private void UpdateScore(int score)
+    {
+        UpdateScoreEvent?.Invoke(score);
     }
 
     protected virtual void CarEnteredLevel()

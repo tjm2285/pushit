@@ -29,6 +29,10 @@ public class CarController : MonoBehaviour
 
     public List<Wheel> wheels;
 
+    public AudioSource engineIdle;
+    public AudioSource engineStart;
+    public AudioSource engineRev;
+
     private bool _isCarActive = true;
     public bool IsCarActive{ get{ return _isCarActive; } set { _isCarActive = value; } }
     
@@ -40,7 +44,8 @@ public class CarController : MonoBehaviour
     {
         _carRb = GetComponent<Rigidbody>();
         _carRb.centerOfMass = _centerOfMass;
-
+      //  engineStart.Play();
+        
         foreach (var wheel in wheels)
         {
             if (wheel.axel == Axel.Front)
@@ -56,13 +61,16 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        
         GetInputs();
         AnimateWheels();
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        {
+            //if (!engineRev.isPlaying) engineRev.Play();
+        }
+        
     }
     private void LateUpdate()
     {
-       
         Move();
         Steer();
         Brake();
@@ -75,6 +83,7 @@ public class CarController : MonoBehaviour
     }
     void Move()
     {
+       // if (!engineIdle.isPlaying) engineIdle.Play();
         foreach(var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque = _moveInput * 300 * _maxAcceleration * Time.deltaTime;

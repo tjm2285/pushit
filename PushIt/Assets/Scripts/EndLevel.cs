@@ -16,6 +16,8 @@ public class EndLevel : Level
     public ParticleSystem _rightParticleSystem;
     public CollectionZone _collectionZone;
     public GameObject _car;
+    public AudioSource _carHorn;
+    public AudioSource _applause;
     void Start()
     {
         //_currentZonesComplete = 0;
@@ -39,7 +41,7 @@ public class EndLevel : Level
         yield return new WaitForSeconds(2);
         _leftParticleSystem.Play();
         _rightParticleSystem.Play();
-        
+        _applause.Play();
         StartCoroutine(WaitForConfetti());
     }
     IEnumerator WaitForConfetti()
@@ -47,6 +49,7 @@ public class EndLevel : Level
         yield return new WaitForSeconds(1);
        _leftAnimator.SetTrigger(DoDrive);
        _collectionZone.EnableCollectionZone();
+       _carHorn.Play();
        yield return new WaitForSeconds(8);
        _collectionZone.AnimateDoorsClosed();
     }
